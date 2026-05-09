@@ -1,63 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "VT323", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Press Start 2P", cursive;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
   
-  --color-pixel-bg: #1a1a1a;
-  --color-pixel-primary: #00ff00;
-  --color-pixel-secondary: #ff00ff;
-  --color-pixel-accent: #ffff00;
-  --color-pixel-card: #2a2a2a;
-  --color-pixel-text: #ffffff;
-  --color-pixel-muted: #888888;
+  --color-genz-bg: #F8F9FF;
+  --color-genz-primary: #7C3AED;
+  --color-genz-secondary: #BEF264;
+  --color-genz-accent: #FF71CF;
+  --color-genz-card: #FFFFFF;
+  --color-genz-text: #1F2937;
+  --color-genz-muted: #6B7280;
 }
 
 @layer base {
   body {
-    @apply bg-pixel-bg text-pixel-text font-sans antialiased;
-    image-rendering: pixelated;
+    @apply bg-genz-bg text-genz-text font-sans antialiased;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display uppercase tracking-wider;
+    @apply font-display font-bold;
   }
 }
 
 @layer utilities {
-  .pixel-border {
-    @apply border-4 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.5)];
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-2xl shadow-blue-500/5;
   }
   
-  .pixel-card {
-    @apply bg-pixel-card p-6 border-4 border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all;
-  }
-
-  .pixel-btn {
-    @apply px-4 py-2 bg-pixel-primary text-black font-display text-[10px] border-4 border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all;
+  .bento-card {
+    @apply bg-white rounded-[40px] p-8 border border-white shadow-xl shadow-blue-500/5 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500;
   }
 
   .markdown-body {
-    @apply prose prose-invert max-w-none;
-    @apply prose-headings:font-display prose-headings:uppercase;
-    @apply prose-p:text-xl;
+    @apply prose prose-neutral max-w-none;
+    @apply prose-headings:font-display prose-headings:font-bold;
+    @apply prose-p:leading-relaxed prose-p:text-lg;
   }
 
   .floating {
-    animation: floating 4s ease-in-out infinite;
+    animation: floating 3s ease-in-out infinite;
   }
 
   @keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
   }
 
-  .pixel-grid {
-    background-size: 20px 20px;
-    background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  .fun-gradient {
+    background: linear-gradient(135deg, #7C3AED 0%, #FF71CF 50%, #BEF264 100%);
+    background-size: 200% 200%;
+    animation: gradient-move 5s ease infinite;
+  }
+
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .blob-animate {
+    animation: blob-move 25s infinite ease-in-out alternate;
+    filter: blur(100px);
+  }
+
+  @keyframes blob-move {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg) skew(0deg); }
+    33% { transform: translate(10%, -15%) scale(1.2) rotate(120deg) skew(5deg); }
+    66% { transform: translate(-15%, 10%) scale(0.8) rotate(240deg) skew(-5deg); }
+    100% { transform: translate(5%, -5%) scale(1.1) rotate(360deg) skew(2deg); }
+  }
+
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(255, 113, 207, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(190, 242, 100, 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
   }
 }

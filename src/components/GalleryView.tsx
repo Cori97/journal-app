@@ -16,32 +16,32 @@ export function GalleryView() {
   }, []);
 
   return (
-    <div className="columns-1 sm:columns-2 lg:columns-3 gap-12 space-y-12">
+    <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
       {entries.map((entry) => (
         <motion.div
           layout
           key={entry.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="relative group pixel-card p-2 border-white break-inside-avoid"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="relative group rounded-[40px] overflow-hidden break-inside-avoid bento-card p-2 border-none"
         >
           <img
             src={entry.photoUrl}
             alt={entry.title}
-            className="w-full h-auto object-cover border-4 border-black group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-auto object-cover rounded-[38px] group-hover:scale-105 transition-transform duration-1000"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-x-4 bottom-4 bg-black/80 border-2 border-white p-6 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-            <p className="text-pixel-primary text-[10px] font-display mb-2">
-              {format(entry.date, 'dd/MM/yy')}
+          <div className="absolute inset-x-2 bottom-2 bg-white/20 backdrop-blur-xl border border-white/30 rounded-[30px] p-6 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
+            <p className="text-white/80 text-[10px] font-black uppercase tracking-widest mb-1">
+              {format(entry.date, 'MMM d, yyyy')}
             </p>
-            <h4 className="text-white font-display text-xl leading-none">{entry.title}</h4>
+            <h4 className="text-white font-display font-black text-2xl leading-none">{entry.title}</h4>
           </div>
         </motion.div>
       ))}
       {entries.length === 0 && (
-        <div className="text-center py-24 text-pixel-muted font-display text-2xl col-span-full border-4 border-dashed border-pixel-muted">
-          EMPTY FOLDER. UPLOAD PICS.
+        <div className="text-center py-24 text-genz-muted font-display text-2xl font-bold col-span-full">
+          Gak ada foto nih. Coba upload yang kece!
         </div>
       )}
     </div>

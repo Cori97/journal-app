@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
+// Helper for stepped easing to maintain pixel art vibe
+const steps = (n: number) => (t: number) => Math.floor(t * n) / (n - 1 || 1);
+
 // Pixel Art Sparkle replacement
 export const SparkleIllustration = ({ className }: { className?: string }) => (
   <motion.div 
@@ -11,7 +14,7 @@ export const SparkleIllustration = ({ className }: { className?: string }) => (
     transition={{ 
       duration: 1, 
       repeat: Infinity, 
-      ease: "steps(2)" 
+      ease: steps(2) 
     }}
   >
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +35,7 @@ export const PixelGhost = ({ className }: { className?: string }) => (
     transition={{ 
       duration: 2, 
       repeat: Infinity, 
-      ease: "steps(4)" 
+      ease: steps(4) 
     }}
   >
     <svg width="80" height="80" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +61,7 @@ export const PixelPencil = ({ className }: { className?: string }) => (
     transition={{ 
       duration: 1.5, 
       repeat: Infinity, 
-      ease: "steps(3)" 
+      ease: steps(3) 
     }}
   >
     <svg width="60" height="120" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
